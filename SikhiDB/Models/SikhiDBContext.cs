@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
+//using MySql.Data.EntityFrameworkCore.Extensions;
+//entity.ForMySQLHasCharset("UTF8mb4");
+//                entity.ForMySQLHasCollation("utf8mb4_bin");
 namespace SikhiDB.Models
 {
     public partial class SikhiDBContext : DbContext
@@ -40,7 +42,7 @@ namespace SikhiDB.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
-
+            
             modelBuilder.Entity<bani_index>(entity =>
             {
                 entity.ToTable("bani_index", "gurbanidb");
@@ -115,7 +117,7 @@ namespace SikhiDB.Models
                     .HasName("bani_text_file_source_file_source_id_id_idx");
 
                 entity.HasIndex(e => e.section_source_id)
-                    .HasName("source_index_bani_text_section_source_id_id_idx");
+                    .HasName("bani_text_source_index_range_section_source_id_id_idx");
 
                 entity.HasIndex(e => e.subsection_source_id)
                     .HasName("source_index_range_bani_text_id_subsection_source_id_idx");
@@ -145,15 +147,13 @@ namespace SikhiDB.Models
                     .HasConstraintName("bani_text_file_source_file_source_id_id");
 
                 entity.HasOne(d => d.section_source_)
-                    .WithMany(p => p.bani_text)
+                    .WithMany(p => p.bani_textsection_source_)
                     .HasForeignKey(d => d.section_source_id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("source_index_bani_text_section_source_id_id");
+                    .HasConstraintName("bani_text_source_index_range_section_source_id_id");
 
                 entity.HasOne(d => d.subsection_source_)
-                    .WithMany(p => p.bani_text)
+                    .WithMany(p => p.bani_textsubsection_source_)
                     .HasForeignKey(d => d.subsection_source_id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("source_index_range_bani_text_id_subsection_source_id");
 
                 entity.HasOne(d => d.writer_)

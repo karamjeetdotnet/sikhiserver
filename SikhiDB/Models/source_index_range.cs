@@ -8,7 +8,8 @@ namespace SikhiDB.Models
         public source_index_range()
         {
             Inversesource_index_range_ = new HashSet<source_index_range>();
-            bani_text = new HashSet<bani_text>();
+            bani_textsection_source_ = new HashSet<bani_text>();
+            bani_textsubsection_source_ = new HashSet<bani_text>();
         }
 
         public long id { get; set; }
@@ -27,6 +28,7 @@ namespace SikhiDB.Models
         public virtual source_index source_index_ { get; set; }
         public virtual source_index_range source_index_range_ { get; set; }
         public virtual ICollection<source_index_range> Inversesource_index_range_ { get; set; }
-        public virtual ICollection<bani_text> bani_text { get; set; }
+        public virtual ICollection<bani_text> bani_textsection_source_ { get; set; }
+        public virtual ICollection<bani_text> bani_textsubsection_source_ { get; set; }
     }
 }

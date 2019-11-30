@@ -7,7 +7,6 @@ namespace SikhiDB.Models
     {
         public source_index()
         {
-            bani_text = new HashSet<bani_text>();
             source_index_range = new HashSet<source_index_range>();
             translation_source = new HashSet<translation_source>();
         }
@@ -21,7 +20,6 @@ namespace SikhiDB.Models
 
         public virtual file_source file_source_ { get; set; }
         public virtual locale locale_ { get; set; }
-        public virtual ICollection<bani_text> bani_text { get; set; }
         public virtual ICollection<source_index_range> source_index_range { get; set; }
         public virtual ICollection<translation_source> translation_source { get; set; }
     }

@@ -32,6 +32,21 @@ namespace SikhiJsonMySqlConsole
         static void Main(string[] args)
         {
             Init();
+            using (SikhiDBContext dBContext = new SikhiDBContext(dbOptions))
+            {
+//                bani_text_line baniText = new bani_text_line();
+//                gurbani_db_id,
+//`bani_text_id`,
+//`source_page`,
+//`source_line`,
+//`gurmukhi`,
+//`pronunciation`,
+//`pronunciation_information`,
+//`translation`,
+//`file_source_id`
+//                dBContext.Add(fileSource);
+//                dBContext.SaveChanges();
+//            }
             ReadFiles(BaniPath);
             ReadDirectories(BaniPath);
             Console.WriteLine("Import Completed");
@@ -108,22 +123,29 @@ namespace SikhiJsonMySqlConsole
                     break;
             }
         }
-        static List<bani_text_line> GetBaniTextLines(List<TextLine> lines, file_source fileSource) {
+        static List<bani_text_line> GetBaniTextLines(long baniTextId, List<TextLine> lines, file_source fileSource) {
             List<bani_text_line> textLines = new List<bani_text_line>();
             Console.WriteLine("processing GetBaniTextLines");
-            foreach (var item in lines)
+            using (SikhiDBContext dBContext = new SikhiDBContext(dbOptions))
             {
-                Console.WriteLine("processed GetBaniTextLines " + item.GurbaniDbId);
-                textLines.Add(new bani_text_line {
-                    file_source_id = fileSource.id,
-                    gurbani_db_id = item.GurbaniDbId,
-                    gurmukhi = item.Gurmukhi,
-                    source_line = item.SourceLine,
-                    source_page = item.SourcePage,
-                    pronunciation = item.Pronunciation,
-                    pronunciation_information = item.PronunciationInformation,
-                    translation = item.Translation
-                });
+                foreach (var item in lines)
+                {
+                    Console.WriteLine("processed GetBaniTextLines " + item.GurbaniDbId);
+                    textLines.Add(new bani_text_line
+                    {
+                        file_source_id = fileSource.id,
+                        gurbani_db_id = item.GurbaniDbId,
+                        gurmukhi = item.Gurmukhi,
+                        source_line = item.SourceLine,
+                        source_page = item.SourcePage,
+                        bani_text_id = baniTextId,
+                        pronunciation = item.Pronunciation,
+                        pronunciation_information = item.PronunciationInformation,
+                        translation = item.Translation
+                    });
+                }
+                dBContext.AddRange(textLines);
+                dBContext.SaveChanges();
             }
             Console.WriteLine("processed GetBaniTextLines");
             return textLines;
@@ -135,19 +157,30 @@ namespace SikhiJsonMySqlConsole
                 bani_Texts = new List<bani_text>();
                 foreach (var text in baniTexts)
                 {
+                    long? sectionId = null, subsectionId = null;
+                    source_index_range sourceIndexRange = source_Index_Ranges.Find(x => x.locale_.english == text.Section && !x.is_subsection);
+                    if (sourceIndexRange != null)
+                        sectionId = sourceIndexRange.id;
+                    source_index_range subSourceIndexRange = source_Index_Ranges.Find(x => x.locale_.english == text.SubSection && x.is_subsection);
+                    if (subSourceIndexRange != null)
+                        subsectionId = subSourceIndexRange.id;
+
                     Console.WriteLine("processed " + text.GurbaniDbId);
-                    bani_Texts.Add(new bani_text
+                    bani_text baniText = new bani_text
                     {
                         sttm_id = text.SttmId,
-                        section_source_id = section
+                        section_source_id = sectionId,
+                        subsection_source_id = subsectionId,
                         file_source_id = fileSource.id,
-                        bani_text_line = GetBaniTextLines(text.Lines, fileSource),
                         gurbani_db_id = text.GurbaniDbId,
                         writer_id = writers.Find(x => x.locale_.english == text.Writer).id
-                    });
+                    };
+                    dBContext.Add(baniText);
+                    dBContext.SaveChanges();
+                    GetBaniTextLines(baniText.id, text.Lines, fileSource);
+                    bani_Texts.Add(baniText);
                 }
-                dBContext.AddRange(bani_Texts);
-                dBContext.SaveChanges();
+                
             }
             Console.WriteLine("processed ProcessBaniDirectory");
         }
@@ -208,22 +241,26 @@ namespace SikhiJsonMySqlConsole
                     }
                     else
                     {
-                        locales.Add(new SikhiDB.Models.locale
+                        languages.Add(new languages
                         {
-                            english = locale.EnglishName,
-                            gurmukhi = locale.GurmukhiName,
-                            internatinal = locale.InternationalName
+                            locale_ = new locale
+                            {
+                                english = locale.EnglishName,
+                                gurmukhi = locale.GurmukhiName,
+                                internatinal = locale.InternationalName
+                            },
+                            file_source_id = fileSource.id
                         });
                     }
                 }
-                if (isWriter) { dBContext.AddRange(writers); } else { dBContext.AddRange(locales); }
+                if (isWriter) { dBContext.AddRange(writers); } else { dBContext.AddRange(languages); }
                 dBContext.SaveChanges();
             }
             Console.WriteLine("processed languages");
         }
         static void GetSourceIndexRanges(long sourceId, long? sourceRangeId, 
             List<Section> sections, file_source fileSource, bool isSubsection = false) {
-            List<source_index_range> sourceIndexRanges = new List<source_index_range>();
+            //List<source_index_range> sourceIndexRanges = new List<source_index_range>();
             Console.WriteLine("processing GetSourceIndexRanges");
             if (sections == null)
                 sections = new List<Section>();
@@ -251,11 +288,11 @@ namespace SikhiJsonMySqlConsole
                     dBContext.Add(sourceIndexRange);
                     dBContext.SaveChanges();
                     GetSourceIndexRanges(sourceId, sourceIndexRange.id, section.SubSections, fileSource, true);
-                    sourceIndexRanges.Add(sourceIndexRange);
+                    source_Index_Ranges.Add(sourceIndexRange);
                 }
             }
             Console.WriteLine("processed GetSourceIndexRanges");
-            return sourceIndexRanges;
+            //return sourceIndexRanges;
         }
         static void ProcessSources(List<Source> sources, file_source fileSource)
         {
