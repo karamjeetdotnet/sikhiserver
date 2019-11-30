@@ -1,0 +1,1 @@
+﻿dotnet ef dbcontext scaffold "server=localhost;port=3306;user=root;password=root;database=gurbanidb" MySql.Data.EntityFrameworkCore -o Models -f --use-database-names --context SikhiDBContext

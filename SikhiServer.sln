@@ -3,7 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SikhiServer", "SikhiServer\SikhiServer.csproj", "{0EFA6268-91A9-46E7-8441-E9996359ED34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SikhiJsonMySqlConsole", "SikhiServer\SikhiJsonMySqlConsole.csproj", "{0EFA6268-91A9-46E7-8441-E9996359ED34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SikhiLib", "SikhiLib\SikhiLib.csproj", "{6482ED9C-D090-4478-9B11-6DE3707F935E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SikhiDB", "SikhiDB\SikhiDB.csproj", "{5435E627-FA0C-4059-AD54-4203FF377984}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaniSource", "BaniSource", "{A263D1B4-3642-4D30-B1F7-0AFF6689644B}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "data", "..\..\database-master\database-master\data\", "{E03D3F0F-19EC-4835-8241-64C635CBF181}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_64866"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\database-master\database-master\data\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64866\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_64866"
+		Release.AspNetCompiler.PhysicalPath = "..\..\database-master\database-master\data\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64866\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "64866"
+		SlnRelativePath = "..\..\database-master\database-master\data\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +42,24 @@ Global
 		{0EFA6268-91A9-46E7-8441-E9996359ED34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EFA6268-91A9-46E7-8441-E9996359ED34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EFA6268-91A9-46E7-8441-E9996359ED34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6482ED9C-D090-4478-9B11-6DE3707F935E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6482ED9C-D090-4478-9B11-6DE3707F935E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6482ED9C-D090-4478-9B11-6DE3707F935E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6482ED9C-D090-4478-9B11-6DE3707F935E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5435E627-FA0C-4059-AD54-4203FF377984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5435E627-FA0C-4059-AD54-4203FF377984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5435E627-FA0C-4059-AD54-4203FF377984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5435E627-FA0C-4059-AD54-4203FF377984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E03D3F0F-19EC-4835-8241-64C635CBF181} = {A263D1B4-3642-4D30-B1F7-0AFF6689644B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5BAE1754-02B7-4406-9B36-6E7417DDDE10}
