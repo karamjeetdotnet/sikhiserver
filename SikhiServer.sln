@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SikhiJsonMySqlConsole", "SikhiServer\SikhiJsonMySqlConsole.csproj", "{0EFA6268-91A9-46E7-8441-E9996359ED34}"
 EndProject
@@ -32,7 +32,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "data", "..\..\database-mast
 		SlnRelativePath = "..\..\database-master\database-master\data\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SikhiWeb", "SikhiWeb\SikhiWeb.csproj", "{FF681763-BD7E-4CCA-9DA3-EA741FEBA987}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SikhiWeb", "SikhiWeb\SikhiWeb.csproj", "{D59FE394-BED5-4D6B-B0A8-D6EB60A02F7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,10 +56,10 @@ Global
 		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{E03D3F0F-19EC-4835-8241-64C635CBF181}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{FF681763-BD7E-4CCA-9DA3-EA741FEBA987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF681763-BD7E-4CCA-9DA3-EA741FEBA987}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF681763-BD7E-4CCA-9DA3-EA741FEBA987}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF681763-BD7E-4CCA-9DA3-EA741FEBA987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59FE394-BED5-4D6B-B0A8-D6EB60A02F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59FE394-BED5-4D6B-B0A8-D6EB60A02F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59FE394-BED5-4D6B-B0A8-D6EB60A02F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59FE394-BED5-4D6B-B0A8-D6EB60A02F7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

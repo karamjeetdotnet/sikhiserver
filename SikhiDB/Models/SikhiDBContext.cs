@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-//using MySql.Data.EntityFrameworkCore.Extensions;
-//entity.ForMySQLHasCharset("UTF8mb4");
-//                entity.ForMySQLHasCollation("utf8mb4_bin");
+using MySql.Data.EntityFrameworkCore.Extensions;
+
 namespace SikhiDB.Models
 {
     public partial class SikhiDBContext : DbContext
@@ -204,6 +203,9 @@ namespace SikhiDB.Models
                     .WithMany(p => p.bani_text_line)
                     .HasForeignKey(d => d.file_source_id)
                     .HasConstraintName("bani_text_line_file_source_file_source_id_id");
+
+                entity.ForMySQLHasCharset("UTF8mb4");
+                entity.ForMySQLHasCollation("utf8mb4_bin");
             });
 
             modelBuilder.Entity<db_system_info>(entity =>

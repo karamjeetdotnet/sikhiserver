@@ -9,6 +9,6 @@ namespace SikhiLib.Interfaces
     public interface IBani: ILocale
     {
         [JsonProperty("lines")]
-        List<Range> Lines { get; set; }
+        List<Models.Range> Lines { get; set; }
     }
 }

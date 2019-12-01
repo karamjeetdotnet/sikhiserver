@@ -34,19 +34,20 @@ namespace SikhiJsonMySqlConsole
             Init();
             using (SikhiDBContext dBContext = new SikhiDBContext(dbOptions))
             {
-//                bani_text_line baniText = new bani_text_line();
-//                gurbani_db_id,
-//`bani_text_id`,
-//`source_page`,
-//`source_line`,
-//`gurmukhi`,
-//`pronunciation`,
-//`pronunciation_information`,
-//`translation`,
-//`file_source_id`
-//                dBContext.Add(fileSource);
-//                dBContext.SaveChanges();
-//            }
+                bani_text_line baniText = new bani_text_line();
+                baniText.gurbani_db_id = "testb3";
+                baniText.bani_text_id = 6241;
+                baniText.source_page = 1;
+                baniText.source_line = 1;
+                baniText.gurmukhi = "<> siq nwmu krqw purKu inrBau inrvYru; Akwl mUriq AjUnI sYBM gur pRswid ]";
+                baniText.pronunciation = "ਭੁਖਿਆਂ, ਪੁਰੀਆਂ";
+                baniText.pronunciation_information = "ਭੁਖਿਆ ਭੁਖ - ਭੁਖਿਆਂ ਦੀ ਭੁਖ ਨਹੀਂ ਉਤਰਦੀ ਭਾਂਵੇਂ ਉਹ ਕਿਨੀਆਂ ਵੀ ਪੁਰੀਆਂ ਦੇ ਪਦਾਰਥਾਂ ਦੇ ਭਾਰ ਬੰਨ ਲੈਣ।";
+                baniText.translation = "test";
+                baniText.file_source_id = 2006;
+                dBContext.Add(baniText);
+                dBContext.SaveChanges();
+            }//test unicode support
+            return;
             ReadFiles(BaniPath);
             ReadDirectories(BaniPath);
             Console.WriteLine("Import Completed");
@@ -54,9 +55,10 @@ namespace SikhiJsonMySqlConsole
         }
         static void Init() {
             DbContextOptionsBuilder<SikhiDBContext> dbContextOptions = new DbContextOptionsBuilder<SikhiDBContext>();
-            dbOptions = dbContextOptions.UseMySQL(ConnectionString).EnableSensitiveDataLogging().Options;
-            //dBContext = new SikhiDBContext(dbOptions.Options);
-            bani_Indices = new List<bani_index>();
+            dbContextOptions.UseMySQL(ConnectionString);
+			dbOptions = dbContextOptions.Options;
+			//dBContext = new SikhiDBContext(dbOptions.Options);
+			bani_Indices = new List<bani_index>();
             bani_Index_Ranges = new List<bani_index_range>();
             bani_Texts = new List<bani_text>();
             bani_Text_Lines = new List<bani_text_line>();
@@ -184,7 +186,7 @@ namespace SikhiJsonMySqlConsole
             }
             Console.WriteLine("processed ProcessBaniDirectory");
         }
-        static List<bani_index_range> GetBaniRanges(List<Range> lines, file_source fileSource) {
+        static List<bani_index_range> GetBaniRanges(List<SikhiLib.Models.Range> lines, file_source fileSource) {
             List<bani_index_range> localRanges = new List<bani_index_range>();
             foreach (var item in lines)
             {
