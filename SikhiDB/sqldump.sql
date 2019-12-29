@@ -1,7 +1,8 @@
 DROP DATABASE IF EXISTS `gurbanidb`;
 
-CREATE DATABASE `gurbanidb` character set UTF8mb4 collate utf8mb4_bin;
+CREATE DATABASE `gurbanidb`;
 USE `gurbanidb`;
+ALTER DATABASE `gurbanidb` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gurbanidb
