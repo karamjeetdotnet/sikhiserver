@@ -101,6 +101,7 @@ CREATE TABLE `bani_text_line` (
   `source_page` bigint(20) DEFAULT NULL,
   `source_line` bigint(20) DEFAULT NULL,
   `gurmukhi` longtext,
+  `initial` varchar(255) DEFAULT NULL,
   `pronunciation` longtext,
   `pronunciation_information` longtext,
   `translation` longtext,
