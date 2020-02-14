@@ -9,6 +9,7 @@ using SikhiDB.Models;
 using SikhiLib.Interfaces;
 using SikhiLib.Models;
 using MySql.Data.EntityFrameworkCore;
+using System.Linq;
 
 namespace SikhiJsonMySqlConsole
 {
@@ -32,22 +33,6 @@ namespace SikhiJsonMySqlConsole
         static void Main(string[] args)
         {
             Init();
-            using (SikhiDBContext dBContext = new SikhiDBContext(dbOptions))
-            {
-                bani_text_line baniText = new bani_text_line();
-                baniText.gurbani_db_id = "testb3";
-                baniText.bani_text_id = 6241;
-                baniText.source_page = 1;
-                baniText.source_line = 1;
-                baniText.gurmukhi = "<> siq nwmu krqw purKu inrBau inrvYru; Akwl mUriq AjUnI sYBM gur pRswid ]";
-                baniText.pronunciation = "ਭੁਖਿਆਂ, ਪੁਰੀਆਂ";
-                baniText.pronunciation_information = "ਭੁਖਿਆ ਭੁਖ - ਭੁਖਿਆਂ ਦੀ ਭੁਖ ਨਹੀਂ ਉਤਰਦੀ ਭਾਂਵੇਂ ਉਹ ਕਿਨੀਆਂ ਵੀ ਪੁਰੀਆਂ ਦੇ ਪਦਾਰਥਾਂ ਦੇ ਭਾਰ ਬੰਨ ਲੈਣ।";
-                baniText.translation = "test";
-                baniText.file_source_id = 2006;
-                dBContext.Add(baniText);
-                dBContext.SaveChanges();
-            }//test unicode support
-            return;
             ReadFiles(BaniPath);
             ReadDirectories(BaniPath);
             Console.WriteLine("Import Completed");

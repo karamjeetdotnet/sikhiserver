@@ -175,7 +175,7 @@ CREATE TABLE `locale` (
   `id` bigint(12) NOT NULL AUTO_INCREMENT,
   `gurmukhi` longtext NOT NULL,
   `english` longtext,
-  `internatinal` longtext,
+  `international` longtext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;

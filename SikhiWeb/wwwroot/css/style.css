@@ -1,0 +1,7 @@
+﻿@font-face {
+    font-family: 'WebAkharSlim';
+    src: url('../fonts/webakharslim.ttf') format('truetype')
+}
+.gurmukhi {
+    font-family: WebAkharSlim
+}
